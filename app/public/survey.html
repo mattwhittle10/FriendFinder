@@ -8,7 +8,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  
+</head>
   <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="home.html">Friend Finder</a>
@@ -32,11 +35,11 @@
               </nav>
     <br>
     <div>
-    Name:<input>
+    Name:<input id="name" type="text" class="form-control" placeholder="Name (Required)">
     </div>
     <br>
     <div>
-    Image Link: <input>
+    Image Link: <input id="image" type="text" class="form-control" placeholder="Link to Photo (Required)">
     <br>
     <br>
     </div>
@@ -153,13 +156,70 @@
         <option value="4">4</option>
         <option value="5">5 (Strongly Agree</option>
     </select>
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="../data/friends.js"></script>
+    <br>
+    <br>
+    <div></div>
+    <button id="submitBtn" type="button" class="btn btn-info">Submit</button> 
+    
+    <!-- <div id="bestFriendModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h3 class="modal-title">Your match</h1>
+					</div>
+					<div class="modal-body">
+						<h2 id="bestFriend"></h2>
+						<img id="bestFriendPhoto" src="#">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div> -->
+    
+    <script type="text/javascript">
+        $("#submitBtn").on("click", function(event){
+            console.log("submit button working")
+            event.preventDefault();
+            var formComplete = true;
+        
+            if($("#name").val() === "" || $("#image").val() === "") {
+                formComplete = false;
+            } else if($("#q1").val() === "undefined" || $("#q2").val() === "undefined" || $("#q3").val() === "undefined" || $("#q4").val() === "undefined" || $("#q5").val() === "undefined" || $("#q6").val() === "undefined" || $("#q7").val() === "undefined" || $("#q8").val() === "undefined" || $("#q9").val() === "undefined" || $("#q10").val() === "undefined") {
+                formComplete = false;
+            }
+            if(formComplete === true) {
+                var newProfile = {
+                    name: $("#name").val().trim(),
+                    image: $("#image").val().trim(),
+                    scores: [
+                             $("q1"),
+                             $("q2"),
+                             $("q3"),
+                             $("q4"),
+                             $("q5"),
+                             $("q6"),
+                             $("q7"),
+                             $("q8"),
+                             $("q9"),
+                             $("q10")
+                            ]
+                };
+                // var currentURL = window.location.origin;
+                // $.post(currentURL + "/api/friends", newProfile, function(data) {
+				// $("#bestFriend").text(data.name);
+				// $("#bestFriendPhoto").attr("src", data.photo);
+                // $("#bestFriendModal").modal("toggle");
+                // });
+            } else {
+                alert("You must anser all the questions before we can find the perfect match for you")
+            }
+        });
+        console.log("hello")
+    </script>
 </body>
 </html>
+
