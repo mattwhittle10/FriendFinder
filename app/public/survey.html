@@ -161,7 +161,7 @@
     <div></div>
     <button id="submitBtn" type="button" class="btn btn-info">Submit</button> 
     
-    <!-- <div id="bestFriendModal" class="modal fade" role="dialog">
+    <div id="bestFriendModal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -178,7 +178,7 @@
 				</div>
 			</div>
 		</div>
-    </div> -->
+    </div>
     
     <script type="text/javascript">
         $("#submitBtn").on("click", function(event){
@@ -208,12 +208,12 @@
                              $("q10")
                             ]
                 };
-                // var currentURL = window.location.origin;
-                // $.post(currentURL + "/api/friends", newProfile, function(data) {
-				// $("#bestFriend").text(data.name);
-				// $("#bestFriendPhoto").attr("src", data.photo);
-                // $("#bestFriendModal").modal("toggle");
-                // });
+                var currentURL = window.location.origin;
+                $.post(currentURL + "/api/friends", newProfile, function(data) {
+				$("#bestFriend").text(data.name);
+				$("#bestFriendPhoto").attr("src", data.photo);
+                $("#bestFriendModal").modal("toggle");
+                });
             } else {
                 alert("You must anser all the questions before we can find the perfect match for you")
             }
